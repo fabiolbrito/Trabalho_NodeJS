@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Cadastro de Cursos - Login</title>
+<link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+	<header>
+		<p>Bem-vindo, <%- usuario.nome %></p>
+		<h1>Cadastro de Cursos</h1>
+		<h4>Forneça os dados do curso para seu cadastro</h4>
+	</header>
+	<section>
+		<form action="/novoCurso" method="post">
+			Código: <br />
+			<input type="text" name="curso[codigo]" placeholder="Codigo"> <br>		
+		
+		
+			Descrição: <br />
+			<input type="text" name="curso[descricao]" placeholder="Descricao"> <br>
+
+			Carga Horaria: <br />
+			<input type="text" name="curso[cargah]" placeholder="Carga Horaria"> <br>
+			
+			Categoria: <br />
+			<select id="curso" name="curso"></select><br><br><br>
+
+			<button type="submit">Cadastrar</button>
+		</form>
+	</section>
+	<footer>
+		<small>Sistema de Cadastro de Eventos e Convidados</small>
+	</footer>
+	
+	<script src="scripts/forms.js"></script>
+	
+</body>
+</html>
