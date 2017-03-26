@@ -1,4 +1,6 @@
 module.exports = function (app) {
+    var Curso = require('./../modelos/curso.js');
+
     var CursosController = {
         menu: function (request, response) {
             var usuario = request.session.usuario,
@@ -7,25 +9,37 @@ module.exports = function (app) {
         },
 
         cadastroCursos: function (request, response) {
-            var usuario = request.session.usuario,
-                params = { usuario: usuario };
+            var usuario = request.session.usuario;
+            var options = ["Desenvolvimento", "Design", "Banco de Dados", "Redes"];
+            var params = { usuario: usuario, options: options };
             response.render('cursos/cadCursos', params);
         },
+
         listaCursos: function (request, response) {
-            var usuario = request.session.usuario,
-                params = { usuario: usuario };
-            response.render('cursos/listaCursos', params);
+            var usuario = request.session.usuario;
+
+            Curso.find(function (err, cursos) {
+                if (err){ 
+                    return console.error(err);
+                } else {
+                    response.render('cursos/listaCursos', {usuario : usuario, listCursos: cursos});
+                };
+            }); 
+            
         },
+
         //cadastro de cursos
         novoCurso: function (request, response) {
-            var codigo = request.body.curso.codigo;
 
-            var descricao =  request.body.curso.descricao;
+            var newCurso = new Curso({
+                codigo: request.body.curso.codigo,
+                descricao: request.body.curso.descricao,
+                cargaHoraria: request.body.curso.cargah,
+                categoria: request.body.curso.categoria
+            });
 
-            var cargah = request.body.curso.cargah;
+            newCurso.save();
 
-
-            //código a ser implementado
             response.redirect('/menu');
         }
 

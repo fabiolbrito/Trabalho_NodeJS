@@ -9,10 +9,13 @@
 	<header>
 		<p>Bem-vindo, <%- usuario.nome %></p>
 		<h1>Lista de Cursos</h1>
-		<h4>Selecione uma opção na lista para executá-la</h4>
 	</header>
 	<section>
-		<!--será implementado em breve-->
+		<ul>
+    		<% for(var i=0; i<listCursos.length; i++) {%>
+				<li><%= listCursos[i].codigo %> - <%= listCursos[i].descricao %> - <%= listCursos[i].cargaHoraria %> - <%= listCursos[i].categoria %></li>
+			<% } %>
+		</ul>
 	</section>
 	<footer>
 		<small>Sistema de Cadastro de Cursos</small>

@@ -24,7 +24,11 @@
 			<input type="text" name="curso[cargah]" placeholder="Carga Horaria"> <br>
 			
 			Categoria: <br />
-			<select id="curso" name="curso"></select><br><br><br>
+			<select name="curso[categoria]">
+				<% for ( var i = 0; i < options.length; i++ ){ %>
+					<option value="<%=options[ i ] %>"><%=options[ i ] %></option>
+				<% } %>
+			</select><br><br><br>
 
 			<button type="submit">Cadastrar</button>
 		</form>
